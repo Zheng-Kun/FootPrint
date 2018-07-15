@@ -44,7 +44,9 @@ function getTimeDistence(points){
 function creatRouteOnDom(routeArr){
     var result_box = document.getElementById("result");
     result_box.innerHTML = "";
+
     creatTextRoute(routeArr);
+
     creatAMapRoute(routeArr);
 }
 

@@ -26,6 +26,7 @@ function getFormInfromation(ev){
     }
     return false;
 }
+
 //生成路径
 function creatRoute(infObject) {
     //存储路径的二维数组
