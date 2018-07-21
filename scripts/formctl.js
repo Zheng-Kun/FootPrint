@@ -105,7 +105,7 @@ function isExist(routeArr,dayRouteArr,currentScenic){
 function scenicWeight(scenicObj,infObject,currentPlace,currentTime){
 
     //暂时假定到达景点的时间为1小时
-    var roadTime = 1;
+    var roadTime = 2;
 
     //计算权重,
     var weight = 0;
