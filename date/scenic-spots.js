@@ -981,6 +981,7 @@ var scenicChongQing = [
     },
 	
 ];
+console.log(scenicChongQing.length);
 
 
 
