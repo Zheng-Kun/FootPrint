@@ -61,7 +61,7 @@ function creatTextRoute(routeArr){
         for(let j = 0 ;j <routeArr[i].length;j++){
             routetext  = routetext + routeArr[i][j] + "->" ;
         }
-        routetext = routetext + routeArr[i][0];
+        // routetext = routetext + routeArr[i][0];
         text_li.innerText = routetext;
         text_ul.appendChild(text_li);
     }
@@ -82,7 +82,7 @@ function creatAMapRoute(routeArr){
         for(let j = 0 ;j <routeArr[i].length;j++){
             routetext  = routetext + routeArr[i][j] + "->" ;
         }
-        routetext = routetext + routeArr[i][0];
+        // routetext = routetext + routeArr[i][0];
         AmapResultH.innerText = routetext;
 
         //aMap生成的文字路径规划
