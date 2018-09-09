@@ -128,6 +128,7 @@ function creatAMapRoute(routeArr){
         driving.search(points,getResult);
         function getResult(status, result){
             //未出错时，result即是对应的路线规划方案
+            
         }
         result_box.appendChild(AmapResult);
     }

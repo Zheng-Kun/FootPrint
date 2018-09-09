@@ -5,6 +5,8 @@ var creat_route = document.getElementById('creat-route');
 
 creat_route.addEventListener('click',getFormInfromation);
 
+var currentPlace = "";
+
 //获取表单内容
 function getFormInfromation(ev){
 
@@ -19,6 +21,7 @@ function getFormInfromation(ev){
     Information.hobby = travel_hobby.options[travel_hobby.selectedIndex].value;
     Information.mode = travel_mode.options[travel_mode.selectedIndex].value;
     Information.hotel = document.getElementById('hotel-input').value;
+    currentPlace = Information.hotel;
     if(Information.hotel.length <= 0){
         alert("请填输入住酒店");
     }else{
@@ -42,11 +45,11 @@ function creatRoute(infObject) {
 }
 
 //生成一天的路径
-function creatDayRoute(routeArr,infObject){
+function creatDayRoute(routeArr, infObject) {
     //当前的点
-    var currentPlace = infObject.hotel;
-    var dayRouteArr = [infObject.hotel];
-    dayRouteArr.push()
+    // var currentPlace = infObject.hotel;
+    var dayRouteArr = [currentPlace];
+    // dayRouteArr.push()
     // routeArr.push(dayRouteArr);
     //当前的时间
     var currentTime = 9;
@@ -79,6 +82,27 @@ function creatDayRoute(routeArr,infObject){
         dayRouteArr.push(maxWeight.name);
         currentTime += maxWeight.time;
     }
+    var dayLastPoint = dayRouteArr[dayRouteArr.length - 1];
+    //todo ajax请求最后景点坐标
+    $.ajax({
+        url: `https://restapi.amap.com/v3/place/text?key=2c61b256dbe8b28d5c94534d569edcb2&keywords=${dayLastPoint}&types=110000&city=重庆&children=1&offset=1&page=1&extensions=all`,
+        context: document.body,
+        async: false,
+        success: function (res) {
+            $.ajax({
+                url: `https://restapi.amap.com/v3/place/around?key=2c61b256dbe8b28d5c94534d569edcb2&location=${res.pois[0].entr_location}&keywords=&types=100000&radius=1000&offset=1&page=1&extensions=all`,
+                context: document.body,
+                async: false,
+                success: function(res2){
+                    console.log("res2:",res2);
+                    currentPlace = res2.pois[0].name;
+                    dayRouteArr.push(currentPlace);
+                }
+            })
+        }
+        
+    });
+    //todo ajax请求周边住宿地点
     routeArr.push(dayRouteArr);
     return routeArr;
 }
