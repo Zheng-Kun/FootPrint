@@ -89,6 +89,7 @@ function creatDayRoute(routeArr, infObject) {
         context: document.body,
         async: false,
         success: function (res) {
+            //todo ajax请求周边住宿地点
             $.ajax({
                 url: `https://restapi.amap.com/v3/place/around?key=2c61b256dbe8b28d5c94534d569edcb2&location=${res.pois[0].entr_location}&keywords=&types=100000&radius=1000&offset=1&page=1&extensions=all`,
                 context: document.body,
@@ -102,7 +103,6 @@ function creatDayRoute(routeArr, infObject) {
         }
         
     });
-    //todo ajax请求周边住宿地点
     routeArr.push(dayRouteArr);
     return routeArr;
 }
