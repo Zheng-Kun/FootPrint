@@ -13,7 +13,7 @@ function autoComplete(){
 
 var timeArr = [];
 
-function getTimeDistence(points){
+function setTimeDistence(points){
 /*
 
     var map = new AMap.Map("myMap", {
@@ -35,9 +35,13 @@ function getTimeDistence(points){
 
         //根据起终点（途经点最多六个）实现驾车路线规划
     driving.search(points,getResult);
+    console.log("points",points);
     function getResult(status, result){
         //未出错时，result即是对应的路线规划方案
-        return timeDistence = (result.routes[0].time/3600).toFixed(2);
+        let timeDistence = (result.routes[0].time/3600).toFixed(2);
+        console.log(result);
+        console.log(timeDistence);
+        
     }
 }
 
@@ -123,6 +127,8 @@ function creatAMapRoute(routeArr){
             points.push({keyword:routeArr[i][j],city:'重庆'});
         }
         points.push({keyword:routeArr[i][0],city:'重庆'});
+
+        console.log(JSON.stringify(points));
 
         //根据起终点（途经点最多六个）实现驾车路线规划
         driving.search(points,getResult);

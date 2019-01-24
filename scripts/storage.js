@@ -11,6 +11,7 @@
 
   //获取所有记录
   storage.get = function (storageName) {
+    
     var str = win.localStorage.getItem(storageName);
     var arr = JSON.parse(str);
     return arr;
