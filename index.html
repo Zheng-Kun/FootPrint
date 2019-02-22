@@ -7,70 +7,74 @@
 </head>
 <body>
     <h1 id="title">FootPrint智能旅游路线推荐</h1>
-    <nav class="">
-        <li>
-            <ol>景点一栏</ol>
-            <ol>路径推荐</ol>
-            <ol>脚印地图</ol>
+    <nav class="top-nav">
+        <li class="nav-list">
+            <ol class="nav-item all-points selected">景点一栏</ol>
+            <ol class="nav-item route-recommend">路径推荐</ol>
+            <ol class="nav-item print-map">脚印地图</ol>
         </li>
     </nav>
-    <div id="form-box">
 
-        <div id="form">
-            <form>
-                <p>
-                    <span>旅游地点:</span>
-                    <select name="travel-province" required>
-                        <option value="重庆">重庆</option>
-                    </select>
-                </p>
-                <p>
-                    <span>旅游时间：</span>
-                    <select name="travel-days" required>
-                        <option value="1">1天</option>
-                        <option value="2">2天</option>
-                        <option value="3">3天</option>
-                        <option value="5">5天</option>
-                        <option value="7">7天</option>
-                        <option value="15">15天</option>
-                    </select>
-                </p>
-                <p>
-                    <span>旅游偏好：</span>
-                    <select name="travel-hobby" required>
-                        <option value="自然旅游景点">自然旅游景点</option>
-                        <option value="人文旅游景点">人文旅游景点</option>
-                        <!--<option value="3">主题公园旅游景点</option>-->
-                    </select>
-                </p>
-                <p>
-                    <span>出行偏好：</span>
-                    <select name="travel-mode" required>
-                        <option value="驾车">驾车</option>
-                        <!--<option value="公共交通">公共交通</option>-->
-                    </select>
-                </p>
-                <p>
-                    <span>住宿地址：</span>
-                    <input type="text" placeholder="hotel" id="hotel-input" required>
-                </p>
+    <div class="item-box all-points-box">
+        <div id="form-box">
+            <div id="form">
+                <form>
+                    <p>
+                        <span>旅游地点:</span>
+                        <select name="travel-province" required>
+                            <option value="重庆">重庆</option>
+                            <option value="甘肃">甘肃</option>
+                        </select>
+                    </p>
+                    <p>
+                        <span>旅游时间：</span>
+                        <select name="travel-days" required>
+                            <option value="1">1天</option>
+                            <option value="2">2天</option>
+                            <option value="3">3天</option>
+                            <option value="5">5天</option>
+                            <option value="7">7天</option>
+                            <option value="15">15天</option>
+                        </select>
+                    </p>
+                    <p>
+                        <span>旅游偏好：</span>
+                        <select name="travel-hobby" required>
+                            <option value="自然旅游景点">自然旅游景点</option>
+                            <option value="人文旅游景点">人文旅游景点</option>
+                            <!--<option value="3">主题公园旅游景点</option>-->
+                        </select>
+                    </p>
+                    <p>
+                        <span>出行偏好：</span>
+                        <select name="travel-mode" required>
+                            <option value="驾车">驾车</option>
+                            <!--<option value="公共交通">公共交通</option>-->
+                        </select>
+                    </p>
+                    <p>
+                        <span>住宿地址：</span>
+                        <input type="text" placeholder="hotel" id="hotel-input" required>
+                    </p>
 
-            </form>
-            <input type="button" id="creat-route" value="生成攻略">
+                </form>
+                <input type="button" id="creat-route" value="生成攻略">
 
+            </div>
         </div>
 
-
+        <div id="result"></div>
     </div>
 
-    <div id="result">
+    <div class="item-box route-recommend-box"></div>
 
-    </div>
+    <div class="item-box print-map-box"></div>
+
 
 </body>
 
 <script src="date/scenic-spots.js"></script>
-
+<script type="text/javascript" src="scripts/tab.js"></script>
 <script src="https://webapi.amap.com/maps?v=1.4.8&key=3f36cca3a96df2f70ebc0774cf66bf6e"></script>
 <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.8&key=3f36cca3a96df2f70ebc0774cf66bf6e&plugin=AMap.Driving"></script>
 <script src="scripts/mapAPI.js"></script>
