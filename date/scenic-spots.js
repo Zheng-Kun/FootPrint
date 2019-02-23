@@ -517,7 +517,7 @@ var scenicChongQing = [
         playtime:"allday",
         score:4.2,
         ticket:120,
-        photo:"http://img1.imgtn.bdimg.com/it/u=1189686691,712955697&fm=214&gp=0.jpg",
+        photo: null,
         introduce:"门票比较贵。大部分基本上都是人造景点，但鬼城还是挺好玩的。景点比较少，就是天气太热了。",
     },
     {
