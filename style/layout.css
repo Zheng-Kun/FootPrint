@@ -121,14 +121,14 @@ ol,ul,li{
     margin-bottom: 150px;
 
     /* position: absolute; */
-    opacity: 0;
-    transition: 300ms all;
+    /* opacity: 0; */
+    /* transition: 300ms all; */
     display: none;
 
 }
 .item-box.selected{
-    opacity: 1;
-    transition: 500ms all;
+    /* opacity: 1; */
+    /* transition: 500ms all; */
     display: block;
     /* animation: changetab 0ms linear 300ms; */
 }
