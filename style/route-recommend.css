@@ -1,5 +1,12 @@
+
 #form-box{
-    margin:0 100px;
+    padding: 10px 100px;
+    background: rgba(0,0,0,0.4);
+    position: fixed;
+    top: 50px;
+    width: 100%;
+    border-top: 1px solid #F4EA2A;
+    z-index: 200;
 }
 #form{
     /*border-bottom:2px #00aeef dotted;*/
@@ -11,61 +18,83 @@
     flex-wrap: nowrap;
     justify-content: space-around;
 }
+#form option{
+    background: transparent;
+}
 #form p{
+    color: white;
     display: inline-block;
-    line-height: 30px;
+    line-height: 40px;
+     background: transparent;
 }
 #form span{
-    font-size:30px;
+    font-size:20px;
+    background: transparent;
 }
 #form select{
     display: inline-block;
-    height: 40px;
-    font-size: 30px;
-    background-color: #00aeef;
+    height: 25px;
+    font-size: 20px;
+    background: transparent;
     color: white;
+    border-radius: 2px;
+    border: none;
+    color: #F4EA2A;
 }
 #hotel-input{
     display: inline-block;
     height: 40px;
-    font-size: 30px;
-    background-color: #00aeef;
-    color: white;
+    font-size: 20px;
+    background-color: transparent;
+    color: #F4EA2A;
+    border: none;
+    border-bottom: 1px solid white 
 }
 #creat-route{
-    margin: 20px auto;
+    /* margin: 20px auto; */
 
-    display: block;
-    width: 300px;
-    height:80px;
-    background-color: #00aeef;
-    color: white;
-    font-size: 35px;
-    border: 0;
+    /* display: block; */
+    /* width: 200px; */
+    padding: 0 50px;
+    height:40px;
+    background-color: transparent;
+    color: #F4EA2A;
+    font-size: 20px;
+    border: 1px solid gray;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    
 }
 #creat-route:hover{
-    background-color: #2576ef;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.1);
     box-shadow:#222C3C 0px 0px 10px 0px;
+    color: #F4EA2A;
 }
 
 
 /*地图显示样式*/
-
+#result{
+    margin: 52px 0;
+    padding: 0 100px;
+}
 #text-route{
-    background-color: #222C3C;
+    /* background-color: rgba(255, 255, 255, 0.1); */
     color: white;
 }
 #text-route ul{
-    margin: 0;
-    padding: 0;
+    margin: 50px 100px;
+    padding: 25px 50px;
+    border: 1px solid #F4EA2A;
+    border-radius: 10px;
     width: 100%;
+    background: rgba(255, 255, 255, 0.2)
 }
 #text-route li{
     list-style: none;
-    border-bottom: 1px solid #00aeef;
-    padding-left: 2em;
-    font-size: 25px;
-    line-height: 50px;
+    /* border-bottom: 1px solid #00aeef; */
+    font-size: 20px;
+    line-height: 2;
 }
 
 #result > div{
@@ -90,10 +119,10 @@
 }
 
 .AmapResultH{
-    background-color: #00aeef;
+    background-color: #F4EA2A;
     margin: 0;
-    font-size: 30px;
+    font-size: 20px;
     padding: 20px 2em;
-    border-top: 20px #222C3C solid;
+    /* border-top: 20px #222C3C solid; */
     overflow-x: auto;
 }

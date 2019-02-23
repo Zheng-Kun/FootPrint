@@ -13,16 +13,16 @@
     <!-- <h1 id="title">FootPrint智能旅游路线推荐</h1> -->
     <nav class="top-nav">
         <li class="nav-list">
-            <ol class="nav-item all-points selected" data-index="0"><span class="icon"></span>景点一览</ol>
-            <ol class="nav-item route-recommend" data-index="1"><span class="icon"></span>路径推荐</ol>
+            <ol class="nav-item all-points" data-index="0"><span class="icon"></span>景点一览</ol>
+            <ol class="nav-item route-recommend selected" data-index="1"><span class="icon"></span>路径推荐</ol>
             <ol class="nav-item print-map" data-index="2"><span class="icon"></span>脚印地图</ol>
         </li>
     </nav>
-    <div class="item-box all-points-box  selected">
+    <div class="item-box all-points-box">
         <ol class="viewpoint-list"></ol>
     </div>
 
-    <div class="item-box  route-recommend-box">
+    <div class="item-box  route-recommend-box  selected">
         <div id="form-box">
             <div id="form">
                 <form>
@@ -38,7 +38,7 @@
                         <select name="travel-days" required>
                             <option value="1">1天</option>
                             <option value="2">2天</option>
-                            <option value="3">3天</option>
+                            <option value="3" selected>3天</option>
                             <option value="5">5天</option>
                             <option value="7">7天</option>
                             <option value="15">15天</option>
@@ -63,9 +63,9 @@
                         <span>住宿地址：</span>
                         <input type="text" placeholder="hotel" id="hotel-input" required>
                     </p>
-
+                    <input type="button" id="creat-route" value="生成攻略">
                 </form>
-                <input type="button" id="creat-route" value="生成攻略">
+                
 
             </div>
         </div>
@@ -75,10 +75,112 @@
 
 
 
-    <div class="item-box print-map-box"></div>
+    <div class="item-box print-map-box">
+        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+        <div id="main" style="height:600px;width:1200px"></div>
+        <iframe id="submitFrame" style="display: none;width:0; height:0" name="submitFrame" src="about:blank"></iframe>
+        <span id="wrong-message" style="color:red; text-align:center; display:block; padding-top:15px;"></span>
+        <div>
+            <h5>补充脚印</h5>
+            <form action="">
+                <p>
+                    <span>选择位置：</span>
+                    <select name="position" id="selectposition">
+                        <option value="" selected>--请选择省份--</option>
+                        <option value='11'>北京</option>
+                        <option value='12'>天津</option>
+                        <option value='13'>河北</option>
+                        <option value='14'>山西</option>
+                        <option value='15'>内蒙古</option>
+                        <option value='21'>辽宁</option>
+                        <option value='22'>吉林</option>
+                        <option value='23'>黑龙江</option>
+                        <option value='31'>上海</option>
+                        <option value='32'>江苏</option>
+                        <option value='33'>浙江</option>
+                        <option value='34'>安徽</option>
+                        <option value='35'>福建</option>
+                        <option value='36'>江西</option>
+                        <option value='37'>山东</option>
+                        <option value='41'>河南</option>
+                        <option value='42'>湖北</option>
+                        <option value='43'>湖南</option>
+                        <option value='44'>广东</option>
+                        <option value='45'>广西</option>
+                        <option value='46'>海南</option>
+                        <option value='50'>重庆</option>
+                        <option value='51'>四川</option>
+                        <option value='52'>贵州</option>
+                        <option value='53'>云南</option>
+                        <option value='54'>西藏</option>
+                        <option value='61'>陕西</option>
+                        <option value='62'>甘肃</option>
+                        <option value='63'>青海</option>
+                        <option value='64'>宁夏</option>
+                        <option value='65'>新疆</option>
+                        <option value='41'>台湾</option>
+                        <option value='81'>香港</option>
+                        <option value='82'>澳门</option>
+                    </select>
+                </p>
+                <p>
+                    <input type="radio" id="done" name="doneorwant" value="1" checked /><label for="done">踩过脚印</label>
+                    <input type="radio" id="want" name="doneorwant" value="2" /><label for="want">想去看看</label>
+                </p>
+                <p><input type="button" id="addprint" name="addprint" value="添加" onclick="changeMap()"></p>
+            </form>
+        </div>
+        <div id="getdata"></div>
+    </div>
+
+    <footer>
+        <span class="footer-title">About us:</span>
+        <div>
+            <h3>郑琨</h3>
+            <a href="##" title="学号">2015210295</a>
+            <a href="##" title="邮箱">zheng-kun@foxmail.com</a>
+            <a href="##" title="班级">01041502</a>
+            <a href="##" title="电话">15310261004</a>
+        </div>
+
+        <div>
+            <h3>蔡亦祥</h3>
+            <a href="##" title="学号">*******</a>
+            <a href="##" title="邮箱">********@qq.com</a>
+            <a href="##" title="班级">01041503班</a>
+            <a href="##" title="电话">13594170000</a>
+        </div>
+
+        <div>
+            <h3>覃勇清</h3>
+            <a href="##" title="学号">*******</a>
+            <a href="##" title="邮箱">********@qq.com</a>
+            <a href="##" title="班级">01041502班</a>
+            <a href="##" title="电话">13594170000</a>
+        </div>
+
+        <div>
+            <h3>唐梦琪</h3>
+            <a href="##" title="学号">*******</a>
+            <a href="##" title="邮箱">********@qq.com</a>
+            <a href="##" title="班级">01041502班</a>
+            <a href="##" title="电话">13594170000</a>
+        </div>
+
+        <div>
+            <h3>ENJOY YOUR LIFE</h3>
+            <a href="##">
+                Enjoy Front End！ <br />
+                Join us！
+            </a>
+        </div>
+
+    </footer>
 
 
 </body>
+<script src="libs/echarts.js"></script>
+<script src="scripts/myprint.js"></script>
 
 <script src="date/scenic-spots.js"></script>
 <script type="text/javascript" src="scripts/tab.js"></script>
