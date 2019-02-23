@@ -12,7 +12,7 @@
 				$(ev.target).parents(".nav-item").addClass("selected");
 			}
 			
-			let selIndex = $(ev.target).attr("data-index");
+			let selIndex = $(ev.target).attr("data-index") || $(ev.target).parents(".nav-item").attr("data-index");
 			$(".item-box").removeClass("selected");
 			$($(".item-box")[selIndex]).addClass("selected");
 		});
