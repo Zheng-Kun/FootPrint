@@ -40,7 +40,7 @@ var userPositionArr = new Array();//存储用户脚印位置
 
 //用户修改用户表单数据时触发此函数修改地图
 function sendMapRequest(){
-	
+	/* 
 	//创建XMLHttpRequest请求，通过username字段请求该用户的脚印
 	xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange = state_change;//当对象状态发生改变是
@@ -80,7 +80,8 @@ function sendMapRequest(){
 				alert(xmlhttp.status);
 			}
 		}
-	}
+	} */
+	startmap();
 }
 
 //此函数生成地图，参数为用户脚印列表
@@ -190,8 +191,9 @@ function startmap(userPositionList){
 	    }
 	);
 }
-startmap(userPositionArr);
-userPositionArr.splice(0,userPositionArr.length);
+/* startmap(userPositionArr);
+userPositionArr.splice(0,userPositionArr.length); */
+startmap();
 
 //添加足迹，用户点击添加时触发此函数，上传数据并修改地图
 function changeMap(){
