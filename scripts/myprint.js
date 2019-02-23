@@ -36,60 +36,60 @@ var position = {
 		82:"澳门"
 }
 
-var userPositionArr = new Array();//存储用户脚印位置
+// var userPositionArr = new Array();//存储用户脚印位置
 
 //用户修改用户表单数据时触发此函数修改地图
-function sendMapRequest(){
-	/* 
-	//创建XMLHttpRequest请求，通过username字段请求该用户的脚印
-	xmlhttp=new XMLHttpRequest();
-	xmlhttp.onreadystatechange = state_change;//当对象状态发生改变是
-	xmlhttp.open("POST",'http://footprint.zhengkun-byyourside.com/PHP/myprint.php',true);//初始化请求参数
-	//获取被选择的用户名，并加入表单对象
-	var userselect = document.getElementById("getuser"); //select元素id
-	var formData = new FormData();
-	formData.append("username", userselect.value);
-	xmlhttp.send(formData);//发送请求
-	function state_change(){
-		if(xmlhttp.readyState==4){//loaded
-			if(xmlhttp.status==200){//200=ok
-				var responseObj = eval("("+xmlhttp.responseText+")");//将服务返回的json解析为对象
-				console.log(responseObj);
-				if(responseObj.code==200||responseObj.code==402){//接口返回200，查询成功
-					if(responseObj.code==402){
-						userPositionArr.splice(0,userPositionArr.length);//清空数组
-						alert("还没有脚印，快去踩一个吧");
-					}else{
-						for(var i = 0;i<responseObj.data.length;i++){
-							var positionId = responseObj.data[i].position_id;
-							for(var key in position)
-							{
-								if(positionId==key){
-									userPositionArr[i] = new Object;
-									userPositionArr[i].name = position[key];
-									userPositionArr[i].value = parseInt(responseObj.data[i].print_done);
-								}
-							}
-						}
-					}
-					console.log(userPositionArr);
-					startmap(userPositionArr);
-					userPositionArr.splice(0,userPositionArr.length);
-				}
-			}else{
-				alert(xmlhttp.status);
-			}
-		}
-	} */
-	startmap();
-}
+// function sendMapRequest(){
+// 	/* 
+// 	//创建XMLHttpRequest请求，通过username字段请求该用户的脚印
+// 	xmlhttp=new XMLHttpRequest();
+// 	xmlhttp.onreadystatechange = state_change;//当对象状态发生改变是
+// 	xmlhttp.open("POST",'http://footprint.zhengkun-byyourside.com/PHP/myprint.php',true);//初始化请求参数
+// 	//获取被选择的用户名，并加入表单对象
+// 	var userselect = document.getElementById("getuser"); //select元素id
+// 	var formData = new FormData();
+// 	formData.append("username", userselect.value);
+// 	xmlhttp.send(formData);//发送请求
+// 	function state_change(){
+// 		if(xmlhttp.readyState==4){//loaded
+// 			if(xmlhttp.status==200){//200=ok
+// 				var responseObj = eval("("+xmlhttp.responseText+")");//将服务返回的json解析为对象
+// 				console.log(responseObj);
+// 				if(responseObj.code==200||responseObj.code==402){//接口返回200，查询成功
+// 					if(responseObj.code==402){
+// 						userPositionArr.splice(0,userPositionArr.length);//清空数组
+// 						alert("还没有脚印，快去踩一个吧");
+// 					}else{
+// 						for(var i = 0;i<responseObj.data.length;i++){
+// 							var positionId = responseObj.data[i].position_id;
+// 							for(var key in position)
+// 							{
+// 								if(positionId==key){
+// 									userPositionArr[i] = new Object;
+// 									userPositionArr[i].name = position[key];
+// 									userPositionArr[i].value = parseInt(responseObj.data[i].print_done);
+// 								}
+// 							}
+// 						}
+// 					}
+// 					console.log(userPositionArr);
+// 					startmap(userPositionArr);
+// 					userPositionArr.splice(0,userPositionArr.length);
+// 				}
+// 			}else{
+// 				alert(xmlhttp.status);
+// 			}
+// 		}
+// 	} */
+// 	startmap();
+// }
 
 //此函数生成地图，参数为用户脚印列表
 function startmap(userPositionList){
 	// 路径配置
 	require.config({
 	    paths: {
-	        echarts: 'http://echarts.baidu.com/build/dist'
+	        echarts: 'https://echarts.baidu.com/build/dist'
 	    }
 	});
 
@@ -196,105 +196,105 @@ userPositionArr.splice(0,userPositionArr.length); */
 startmap();
 
 //添加足迹，用户点击添加时触发此函数，上传数据并修改地图
-function changeMap(){
-	//创建XMLHttpRequest请求，通过username字段请求该用户的脚印
-	xhr=new XMLHttpRequest();
-	xhr.onreadystatechange = state_change;//当对象状态发生改变是
-	xhr.open("POST",'http://footprint.zhengkun-byyourside.com/PHP/addprintlist.php',true);//初始化请求参数
-	//获取被表单数据，并加入表单对象
-	var username = document.getElementById("addname"); //用户名input
-	var position = document.getElementById("selectposition");//地址选择select
-	var doneOrWant = document.getElementsByName("doneorwant");//脚印类型radio元素
-	for(var i = 0; i < doneOrWant.length; i++)
-	{
-	    if(doneOrWant[i].checked)
-	    	doneOrWantvalue=doneOrWant[i].value;
-	}
-	var addDate = document.getElementById("adddate");//日期设置
-	var addTitle = document.getElementById("addtitle");//足迹地图
-	var formData = new FormData();
-	formData.append("add", "addprint");
-	formData.append("username", username.value);
-	formData.append("position", position.value);
-	formData.append("printdate", addDate.value);
-	formData.append("content", addTitle.value);
-	formData.append("doneorwant",doneOrWantvalue);
-	console.log(username.value+","+position.value+","+addDate.value+","+addTitle.value+","+doneOrWantvalue);
-	xhr.send(formData);//发送请求
-	function state_change(){
-		if(xhr.readyState==4){//loaded
-			if(xhr.status==200){//200=ok
-				var responseObj = eval("("+xhr.responseText+")");//将服务返回的json解析为对象
-				console.log(responseObj);
-				if(responseObj.code==407){
-					alert("标记过啦，认真看看地图吧");
-				}else if(responseObj.code==406){
-					alert("修改为踩过脚印失败，请检查填入数据");
-				}else if(responseObj.code==405){
-					alert("标记过啦，去地图看看你的脚印吧");
-				}else if(responseObj.code==402){
-					alert("数据不能留空呀");
-				}else if(responseObj.code==403){
-					alert("添加失败，请联系zheng-kun@foxmail.com解决");
-				}else if(responseObj.code==401){
-					alert("提交数据失败，请联系zheng-kun@foxmail.com解决");
-				}else if(responseObj.code==200||201){
-					if(responseObj.code==200){
-						alert("添加成功，你的脚印已经更新到地图啦，去看看吧");
-					}else{
-						alert("修改成功，你的脚印已经更新到地图啦，去看看吧");
-					}
-					//运行函数
-					sendMapChange(username.value);
-				}
-			}else{
-				alert(xhr.status);
-			}
-		}
-	}
-}
+// function changeMap(){
+// 	//创建XMLHttpRequest请求，通过username字段请求该用户的脚印
+// 	xhr=new XMLHttpRequest();
+// 	xhr.onreadystatechange = state_change;//当对象状态发生改变是
+// 	xhr.open("POST",'http://footprint.zhengkun-byyourside.com/PHP/addprintlist.php',true);//初始化请求参数
+// 	//获取被表单数据，并加入表单对象
+// 	var username = document.getElementById("addname"); //用户名input
+// 	var position = document.getElementById("selectposition");//地址选择select
+// 	var doneOrWant = document.getElementsByName("doneorwant");//脚印类型radio元素
+// 	for(var i = 0; i < doneOrWant.length; i++)
+// 	{
+// 	    if(doneOrWant[i].checked)
+// 	    	doneOrWantvalue=doneOrWant[i].value;
+// 	}
+// 	var addDate = document.getElementById("adddate");//日期设置
+// 	var addTitle = document.getElementById("addtitle");//足迹地图
+// 	var formData = new FormData();
+// 	formData.append("add", "addprint");
+// 	formData.append("username", username.value);
+// 	formData.append("position", position.value);
+// 	formData.append("printdate", addDate.value);
+// 	formData.append("content", addTitle.value);
+// 	formData.append("doneorwant",doneOrWantvalue);
+// 	console.log(username.value+","+position.value+","+addDate.value+","+addTitle.value+","+doneOrWantvalue);
+// 	xhr.send(formData);//发送请求
+// 	function state_change(){
+// 		if(xhr.readyState==4){//loaded
+// 			if(xhr.status==200){//200=ok
+// 				var responseObj = eval("("+xhr.responseText+")");//将服务返回的json解析为对象
+// 				console.log(responseObj);
+// 				if(responseObj.code==407){
+// 					alert("标记过啦，认真看看地图吧");
+// 				}else if(responseObj.code==406){
+// 					alert("修改为踩过脚印失败，请检查填入数据");
+// 				}else if(responseObj.code==405){
+// 					alert("标记过啦，去地图看看你的脚印吧");
+// 				}else if(responseObj.code==402){
+// 					alert("数据不能留空呀");
+// 				}else if(responseObj.code==403){
+// 					alert("添加失败，请联系zheng-kun@foxmail.com解决");
+// 				}else if(responseObj.code==401){
+// 					alert("提交数据失败，请联系zheng-kun@foxmail.com解决");
+// 				}else if(responseObj.code==200||201){
+// 					if(responseObj.code==200){
+// 						alert("添加成功，你的脚印已经更新到地图啦，去看看吧");
+// 					}else{
+// 						alert("修改成功，你的脚印已经更新到地图啦，去看看吧");
+// 					}
+// 					//运行函数
+// 					sendMapChange(username.value);
+// 				}
+// 			}else{
+// 				alert(xhr.status);
+// 			}
+// 		}
+// 	}
+// }
 
 //通过选择用户名改变地图
-function sendMapChange(username){
-	console.log("进入sendchangmap函数");
-	xmlhttp=new XMLHttpRequest();
-	xmlhttp.onreadystatechange = state_change;//当对象状态发生改变是
-	xmlhttp.open("POST",'http://footprint.zhengkun-byyourside.com/PHP/myprint.php',true);//初始化请求参数
-	//获取被选择的用户名，并加入表单对象
-	var formData = new FormData();
-	formData.append("username", username);
-	xmlhttp.send(formData);//发送请求
-	function state_change(){
-		if(xmlhttp.readyState==4){//loaded
-			if(xmlhttp.status==200){//200=ok
-				var responseObj = eval("("+xmlhttp.responseText+")");//将服务返回的json解析为对象
-				console.log(responseObj);
-				if(responseObj.code==200||responseObj.code==402){//接口返回200，查询成功
-					if(responseObj.code==402){
-						userPositionArr.splice(0,userPositionArr.length);//清空数组
-						alert("还没有脚印，快去踩一个吧");
-					}else{
-						for(var i = 0;i<responseObj.data.length;i++){
-							var positionId = responseObj.data[i].position_id;
-							for(var key in position)
-							{
-								if(positionId==key){
-									userPositionArr[i] = new Object;
-									userPositionArr[i].name = position[key];
-									userPositionArr[i].value = parseInt(responseObj.data[i].print_done);
-								}
-							}
-						}
-					}
-					console.log(userPositionArr);
-					startmap(userPositionArr);
-					userPositionArr.splice(0,userPositionArr.length);
-				}
-			}else{
-				alert(xmlhttp.status);
-			}
-		}
-	}
-}
+// function sendMapChange(username){
+// 	console.log("进入sendchangmap函数");
+// 	xmlhttp=new XMLHttpRequest();
+// 	xmlhttp.onreadystatechange = state_change;//当对象状态发生改变是
+// 	xmlhttp.open("POST",'http://footprint.zhengkun-byyourside.com/PHP/myprint.php',true);//初始化请求参数
+// 	//获取被选择的用户名，并加入表单对象
+// 	var formData = new FormData();
+// 	formData.append("username", username);
+// 	xmlhttp.send(formData);//发送请求
+// 	function state_change(){
+// 		if(xmlhttp.readyState==4){//loaded
+// 			if(xmlhttp.status==200){//200=ok
+// 				var responseObj = eval("("+xmlhttp.responseText+")");//将服务返回的json解析为对象
+// 				console.log(responseObj);
+// 				if(responseObj.code==200||responseObj.code==402){//接口返回200，查询成功
+// 					if(responseObj.code==402){
+// 						userPositionArr.splice(0,userPositionArr.length);//清空数组
+// 						alert("还没有脚印，快去踩一个吧");
+// 					}else{
+// 						for(var i = 0;i<responseObj.data.length;i++){
+// 							var positionId = responseObj.data[i].position_id;
+// 							for(var key in position)
+// 							{
+// 								if(positionId==key){
+// 									userPositionArr[i] = new Object;
+// 									userPositionArr[i].name = position[key];
+// 									userPositionArr[i].value = parseInt(responseObj.data[i].print_done);
+// 								}
+// 							}
+// 						}
+// 					}
+// 					console.log(userPositionArr);
+// 					startmap(userPositionArr);
+// 					userPositionArr.splice(0,userPositionArr.length);
+// 				}
+// 			}else{
+// 				alert(xmlhttp.status);
+// 			}
+// 		}
+// 	}
+// }
 
 
