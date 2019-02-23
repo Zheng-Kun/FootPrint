@@ -3,7 +3,8 @@
 html,body{
     padding: 0;
     margin: 0;
-    background: #000 url(../images/big-bg.jpg);
+    /* background: #000 url("http://pic1.win4000.com/wallpaper/2019-02-21/5c6e44033ab3e.jpg"); */
+    background: #000 url(../images//big-bg.jpg);
     background-size: cover;
     background-attachment: fixed;
     widows: 100%;
