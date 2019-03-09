@@ -1,7 +1,7 @@
 (() => {
 
 	let $viewpointList = $(".all-points-box .viewpoint-list");
-	$viewpointList.html(createCardList(scenicChongQing));
+	$viewpointList.html(createCardList(scenicGanSu));
 
 	function createCardList(data){
 		let dom = "";

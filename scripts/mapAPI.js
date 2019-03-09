@@ -2,7 +2,7 @@
 AMap.plugin(['AMap.Autocomplete'],autoComplete);
 function autoComplete(){
     var autoCom = new AMap.Autocomplete({
-        city:"重庆",
+        city:"甘肃",// !==============
         dataType:"all",
         citylimit:true,
         input:"hotel-input",
@@ -124,9 +124,9 @@ function creatAMapRoute(routeArr){
         //生成路径对象
         var points = [];
         for(let j = 0;j<routeArr[i].length; j++){
-            points.push({keyword:routeArr[i][j],city:'重庆'});
+            points.push({keyword:routeArr[i][j],city:'甘肃'});
         }
-        points.push({keyword:routeArr[i][0],city:'重庆'});
+        points.push({keyword:routeArr[i][0],city:'甘肃'});
 
         console.log(JSON.stringify(points));
 

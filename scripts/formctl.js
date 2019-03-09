@@ -62,21 +62,21 @@ function creatDayRoute(routeArr, infObject) {
             time:0,
         }
         //寻找权重最高的景点
-        for(let i = 0;i<scenicChongQing.length;i++){
+        for(let i = 0;i<scenicGanSu.length;i++){
             //如果景点存在，跳过
-            if(isExist(routeArr,dayRouteArr,scenicChongQing[i].name)){
+            if(isExist(routeArr,dayRouteArr,scenicGanSu[i].name)){
                 continue;
             }
             //由于异步问题，该信息暂时不做使用
             var points = [
-                { keyword: currentPlace,city:'重庆' },
-                { keyword: scenicChongQing[i].name,city:'重庆' }
+                { keyword: currentPlace,city:'甘肃' },
+                { keyword: scenicGanSu[i].name,city:'甘肃' }
             ];
-            var weight = scenicWeight(scenicChongQing[i],infObject,currentPlace,currentTime);
+            var weight = scenicWeight(scenicGanSu[i],infObject,currentPlace,currentTime);
             if(weight>maxWeight.weight){
-                maxWeight.name = scenicChongQing[i].name;
+                maxWeight.name = scenicGanSu[i].name;
                 maxWeight.weight = weight;
-                maxWeight.time = scenicChongQing[i].time;
+                maxWeight.time = scenicGanSu[i].time;
             }
         }
         dayRouteArr.push(maxWeight.name);
@@ -85,7 +85,7 @@ function creatDayRoute(routeArr, infObject) {
     var dayLastPoint = dayRouteArr[dayRouteArr.length - 1];
     //todo ajax请求最后景点坐标
     $.ajax({
-        url: `https://restapi.amap.com/v3/place/text?key=2c61b256dbe8b28d5c94534d569edcb2&keywords=${dayLastPoint}&types=110000&city=重庆&children=1&offset=1&page=1&extensions=all`,
+        url: `https://restapi.amap.com/v3/place/text?key=2c61b256dbe8b28d5c94534d569edcb2&keywords=${dayLastPoint}&types=110000&city=甘肃&children=1&offset=1&page=1&extensions=all`,
         context: document.body,
         async: false,
         success: function (res) {
